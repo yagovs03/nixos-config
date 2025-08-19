@@ -47,5 +47,3 @@
   # HM’s own state version (set once)
   home.stateVersion = "25.05";
 }
-EOF
-
