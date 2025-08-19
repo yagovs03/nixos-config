@@ -7,13 +7,38 @@
   home.homeDirectory = "/home/agallas";
 
   # User packages (installed for your user only)
+
   home.packages = with pkgs; [
+
     git
     neovim
     firefox
+
+    # Command‑line utilities
     ripgrep
     fzf
     eza
+    ranger            # file manager
+    ueberzugpp        # image previews for ranger
+    poppler           # PDF preview for ranger
+    ffmpegthumbnailer # video thumbnailer for ranger
+    atool             # archive extraction helper
+    brightnessctl     # brightness control utility
+    pamixer           # audio volume control
+
+    # Graphical applications
+    kitty             # terminal emulator
+    rofi              # application launcher
+    neofetch          # system information CLI
+    vscode            # graphical text editor
+
+    # networking tools
+    wget              # command‑line download tool
+
+    # Hyprland environment extras
+    waybar            # bar for Hyprland
+    hyprpaper         # wallpaper daemon
+    wlogout           # logout menu for wayland
   ];
 
   # Shell & prompt (example)
