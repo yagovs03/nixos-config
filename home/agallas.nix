@@ -6,6 +6,7 @@
   home.username = "agallas";
   home.homeDirectory = "/home/agallas";
 
+
   # User packages (installed for your user only)
 
   home.packages = with pkgs; [
@@ -79,11 +80,6 @@
   xdg.configFile."ranger".source = ./dotfiles/ranger;
 
   # Rofi
-
-  # Arreglo home manager
-
-  # Back up any conflicting files/dirs by appending ".backup"
-  home-manager.backupFileExtension = "backup";
 
   # HM’s own state version (set once)
   home.stateVersion = "25.05";
