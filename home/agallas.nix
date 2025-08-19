@@ -70,18 +70,20 @@
   xdg.configFile."hypr".source = ./dotfiles/hypr;
 
   # Kitty 
-  xdg.configFile."kitty/kitty.conf".source = ./dotfiles/kitty/kitty.conf;
+  xdg.configFile."kitty".source = ./dotfiles/kitty;
 
   # Waybar
-  xdg.configFile."waybar/config".source = ./dotfiles/waybar/config; 
-  xdg.configFile."ranger/style.css".source = ./dotfiles/ranger/style.css; 
+  xdg.configFile."waybar".source = ./dotfiles/waybar; 
 
   # Ranger   
-  xdg.configFile."ranger/rc.conf".source = ./dotfiles/ranger/rc.conf; 
-  xdg.configFile."ranger/rifle.conf".source = ./dotfiles/ranger/rifle.conf;  
+  xdg.configFile."ranger".source = ./dotfiles/ranger;
 
   # Rofi
 
+  # Arreglo home manager
+
+  # Back up any conflicting files/dirs by appending ".backup"
+  home-manager.backupFileExtension = "backup";
 
   # HM’s own state version (set once)
   home.stateVersion = "25.05";
