@@ -67,18 +67,18 @@
   };
 
   # Hyperland, hyprpaper:
-  #xdg.configFile."hypr".source = ./dotfiles/hypr;
+  xdg.configFile."hypr".source = ./dotfiles/hypr;
 
   # Kitty 
-  #xdg.configFile."kitty/kitty.conf".source = ./dotfiles/kitty/kitty.conf;
+  xdg.configFile."kitty/kitty.conf".source = ./dotfiles/kitty/kitty.conf;
 
   # Waybar
-  #xdg.configFile."waybar/config".source = ./dotfiles/waybar/config; 
-  #xdg.configFile."ranger/style.css".source = ./dotfiles/ranger/style.css; 
+  xdg.configFile."waybar/config".source = ./dotfiles/waybar/config; 
+  xdg.configFile."ranger/style.css".source = ./dotfiles/ranger/style.css; 
 
   # Ranger   
-  #xdg.configFile."ranger/rc.conf".source = ./dotfiles/ranger/rc.conf; 
-  #xdg.configFile."ranger/rifle.conf".source = ./dotfiles/ranger/rifle.conf;  
+  xdg.configFile."ranger/rc.conf".source = ./dotfiles/ranger/rc.conf; 
+  xdg.configFile."ranger/rifle.conf".source = ./dotfiles/ranger/rifle.conf;  
 
   # Rofi
 
