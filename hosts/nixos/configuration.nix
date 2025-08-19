@@ -1,6 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# Edit this configuration file to define what should be installed on your system.
 
 { config, pkgs, ... }:
 
@@ -34,38 +32,18 @@
     xwayland.enable = true;  #useful for legacy apps
   };
 
-  # Install some basic packages
+  # Install system‑level packages
+  #
+  # Keep this list minimal – only include software that must be available
+  # system‑wide (e.g. for services run as root). User‑facing tools are
+  # installed via Home Manager in home/agallas.nix.
   environment.systemPackages = with pkgs; [
-    hyprland #desktop
-    waybar #upper bar
-    hyprpaper #wallpaper
-    wlogout #log out menu
-    greetd.tuigreet #login
+    
+    # greetd runs as root and launches the greeter binary
+    greetd.tuigreet
 
-    bibata-cursors #cursor theme
-
-    kitty #terminal
-    firefox #browser
-    networkmanager
-    git
-    wget
-    rofi #app launcher
-    neofetch
-
-    # TEXT EDITOR
-    vscode
-    neovim
-
-    # FILE MANAGER
-    ranger #file manager
-    ueberzugpp #images visualization
-    poppler #PDFs visualization
-    ffmpegthumbnailer #videos visualization
-    atool #Archives
-
-    # BRIGHTNESS AND VOLUME
-    brightnessctl
-    pamixer #volume
+    # Provide the Bibata cursor theme system‑wide (affects the login screen).
+    bibata-cursors
   ];
 
   #Fonts
