@@ -26,12 +26,15 @@
     atool             # archive extraction helper
     brightnessctl     # brightness control utility
     pamixer           # audio volume control
-
+    unzip
     # Graphical applications
     kitty             # terminal emulator
     rofi              # application launcher
     neofetch          # system information CLI
     vscode            # graphical text editor
+
+    #Icons
+    
 
     # networking tools
     wget              # command‑line download tool
@@ -76,11 +79,15 @@
   # Waybar
   xdg.configFile."waybar".source = ./dotfiles/waybar; 
 
-  # Ranger   
-  xdg.configFile."ranger".source = ./dotfiles/ranger;
+  # Ranger 
+#me daba error, creo que hay que hacer que copie solo los archivos conf porque los otros de la carpeta dan problemas  
+  xdg.configFile."ranger/commands.py".source = ./dotfiles/ranger/commands.py;
+  xdg.configFile."ranger/commands_full.py".source = ./dotfiles/ranger/commands_full.py;
+  xdg.configFile."ranger/rc.conf".source = ./dotfiles/ranger/rc.conf;
+  xdg.configFile."ranger/rifle.conf".source = ./dotfiles/ranger/rifle.conf;
 
   # Rofi
-
+  xdg.configFile."rofi".source = ./dotfiles/rofi; 
   # HM’s own state version (set once)
   home.stateVersion = "25.05";
 }
