@@ -1,5 +1,3 @@
-mkdir -p ~/nix-config/home
-cat > ~/nix-config/home/agallas.nix <<'EOF'
 { config, pkgs, ... }:
 
 {
@@ -30,7 +28,7 @@ cat > ~/nix-config/home/agallas.nix <<'EOF'
   programs.git = {
     enable = true;
     userName = "Agallas";
-    userEmail = "your-email-on-github@example.com";
+    userEmail = "yagovazquez03@gmail.com";
     extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;
@@ -47,7 +45,7 @@ cat > ~/nix-config/home/agallas.nix <<'EOF'
   # xdg.configFile."hypr/hyprland.conf".source = ./dotfiles/hypr/hyprland.conf;
 
   # HM’s own state version (set once)
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.05";
 }
 EOF
 
