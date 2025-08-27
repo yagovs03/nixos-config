@@ -14,35 +14,38 @@
     git
     neovim
     firefox
-
+    wordgrinder
+    
     # Command‑line utilities
     ripgrep
     fzf
     eza
+
+    # File manager
     ranger            # file manager
     ueberzugpp        # image previews for ranger
     poppler           # PDF preview for ranger
     ffmpegthumbnailer # video thumbnailer for ranger
+
     atool             # archive extraction helper
+
     brightnessctl     # brightness control utility
     pamixer           # audio volume control
+
     unzip
-    # Graphical applications
     kitty             # terminal emulator
     rofi              # application launcher
     neofetch          # system information CLI
+
     vscode            # graphical text editor
 
-    #Icons
-    
-
-    # networking tools
     wget              # command‑line download tool
 
     # Hyprland environment extras
     waybar            # bar for Hyprland
     hyprpaper         # wallpaper daemon
-    wlogout           # logout menu for wayland
+    #wlogout           # logout menu for wayland
+    hyprlock
   ];
 
   # Shell & prompt (example)
