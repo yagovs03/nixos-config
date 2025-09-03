@@ -31,10 +31,10 @@ body{
 /* Tarjeta principal */
 .card{
   max-width: 1000px;
-  margin: 40px;
-  padding: 28px 32px;
+  margin: 0px;
+  padding: 24px 28px;
   background: var(--card);       /* sólido, no transparente */
-  border-radius: 16px;
+  border-radius: 0px;
   box-shadow: 0 12px 48px var(--shadow);
 }
 
