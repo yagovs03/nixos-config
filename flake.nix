@@ -6,12 +6,14 @@
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-flake.url = "github:jordanisaacs/neovim-flake";
+    nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager, neovim-flake, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, neovim-flake, nur, ... }@inputs:
   let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
+    pkgs = import nixpkgs { inherit system; overlays = [ nur.overlay ]; };
   in {
     # NixOS system (host) named "nixos"
     nixosConfigurations.nixos = lib.nixosSystem {
@@ -27,6 +29,8 @@
           home-manager.useUserPackages = true;
 	  home-manager.backupFileExtension = "backup";
           home-manager.users.agallas = import ./home/agallas.nix;
+          # (opcional pero recomendable) también fija el overlay a nivel del sistema
+          nixpkgs.overlays = [ nur.overlay ];
         }
       ];
     };
