@@ -14,6 +14,7 @@
     git
     neovim
     wordgrinder
+    google-chrome
     
     # Command‑line utilities
     ripgrep
@@ -63,6 +64,9 @@
         # Esto desactiva la página de Firefox en la pestaña nueva,
         # pero NO pone tu startpage (quedará en blanco).
         "browser.newtabpage.activity-stream.enabled" = false;
+        # Forzar tema oscuro
+        "ui.systemUsesDarkTheme" = 1;
+        "browser.in-content.dark-mode" = true;
       };
       # Opcional: estilo mínimo para UI vía userChrome
       userChrome = ''
