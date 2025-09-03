@@ -13,7 +13,6 @@
 
     git
     neovim
-    firefox
     wordgrinder
     
     # Command‑line utilities
@@ -48,49 +47,50 @@
     hyprlock
   ];
 
-  # Shell & prompt (example)
+
+  # Startpage (carpeta con index.html, style.css, etc.)
+  home.file.".startpage".source = ./dotfiles/startpage;
+
+  programs.firefox = {
+    enable = true;
+    profiles.default = {
+      isDefault = true;
+      settings = {
+        "browser.startup.homepage" =
+          "file://${config.home.homeDirectory}/.startpage/index.html";
+        "browser.startup.page" = 1; # abrir con la homepage
+        # Esto desactiva la página de Firefox en la pestaña nueva,
+        # pero NO pone tu startpage (quedará en blanco).
+        "browser.newtabpage.activity-stream.enabled" = false;
+      };
+    };
+  }; # <-- cerramos programs.firefox
+
+  # Shell & prompt
   programs.zsh.enable = true;
   programs.starship.enable = true;
-  programs.zsh.shellAliases = {
-    gs = "git status";
-    v = "nvim";
-  };
+  programs.zsh.shellAliases = { gs = "git status"; v = "nvim"; };
 
-  # Git identity (optional; you already set global config)
+  # Git
   programs.git = {
     enable = true;
     userName = "Agallas";
     userEmail = "yagovazquez03@gmail.com";
-    extraConfig = {
-      init.defaultBranch = "main";
-      pull.rebase = true;
-    };
+    extraConfig = { init.defaultBranch = "main"; pull.rebase = true; };
   };
 
-  # Environment variables (user scope)
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    BROWSER = "firefox";
-  };
+  home.sessionVariables = { EDITOR = "nvim"; BROWSER = "firefox"; };
 
-  # Hyperland, hyprpaper:
+  # Dotfiles
   xdg.configFile."hypr".source = ./dotfiles/hypr;
-
-  # Kitty 
   xdg.configFile."kitty".source = ./dotfiles/kitty;
+  xdg.configFile."waybar".source = ./dotfiles/waybar;
 
-  # Waybar
-  xdg.configFile."waybar".source = ./dotfiles/waybar; 
-
-  # Ranger 
-#me daba error, creo que hay que hacer que copie solo los archivos conf porque los otros de la carpeta dan problemas  
+  # Ranger (solo archivos sueltos)
   xdg.configFile."ranger/commands.py".source = ./dotfiles/ranger/commands.py;
   xdg.configFile."ranger/commands_full.py".source = ./dotfiles/ranger/commands_full.py;
   xdg.configFile."ranger/rc.conf".source = ./dotfiles/ranger/rc.conf;
   xdg.configFile."ranger/rifle.conf".source = ./dotfiles/ranger/rifle.conf;
 
-  # Rofi
-  xdg.configFile."rofi".source = ./dotfiles/rofi; 
-  # HM’s own state version (set once)
   home.stateVersion = "25.05";
 }

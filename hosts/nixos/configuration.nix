@@ -76,7 +76,12 @@
     alsa.enable = true;
     pulse.enable = true;
     jack.enable = true;
+    wireplumber.enable = true;
   };
+  
+  hardware.bluetooth.enable = true;
+  
+  services.blueman.enable = true; #bluetooth manager
 
   # Set your time zone.
   time.timeZone = "Europe/Madrid";
