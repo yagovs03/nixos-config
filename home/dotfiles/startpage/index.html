@@ -1,35 +1,68 @@
 <!doctype html>
-<html lang="en">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Welcome</title>
-<link rel="stylesheet" href="style.css">
+<html lang="es">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Startpage</title>
+<link rel="stylesheet" href="style.css" />
 <body>
-  <div class="card">
-    <h1>Welcome, agallas</h1>
-    <p id="clock"></p>
-    <div class="grid">
-      <div>
-        <h3>Frequent</h3>
-        <a href="https://mail.google.com">Gmail</a><br>
-        <a href="https://calendar.google.com">Calendar</a><br>
-        <a href="https://github.com">GitHub</a>
+  <main class="wrap">
+    <aside class="panel"></aside>
+
+    <section class="card">
+      <h1><span class="muted">Welcome,</span> agallas</h1>
+      <p class="clock" id="clock"></p>
+
+      <form class="search" action="https://duckduckgo.com/" method="get">
+        <input name="q" type="text" placeholder="› search…" autofocus />
+      </form>
+
+      <div class="grid">
+        <div>
+          <h3>Frequent</h3>
+          <a href="https://mail.google.com">Gmail</a><br />
+          <a href="https://calendar.google.com">Calendar</a><br />
+          <a href="https://github.com/agallas">GitHub</a>
+        </div>
+
+        <div>
+          <h3>Uni</h3>
+          <a href="https://moodle.org">Moodle</a><br />
+          <a href="https://scholar.google.com">Scholar</a>
+        </div>
+
+        <div>
+          <h3>Code</h3>
+          <a href="https://lobste.rs">lobste.rs</a><br />
+          <a href="https://news.ycombinator.com">Hacker News</a><br />
+          <a href="https://codeforces.com">Codeforces</a>
+        </div>
+
+        <div>
+          <h3>Music</h3>
+          <a href="https://bandcamp.com">Bandcamp</a><br />
+          <a href="https://soundcloud.com">SoundCloud</a>
+        </div>
+
+        <div>
+          <h3>Research</h3>
+          <a href="https://eprint.iacr.org">ePrint</a><br />
+          <a href="https://arxiv.org">arXiv</a><br />
+          <a href="https://dblp.org">DBLP</a>
+        </div>
       </div>
-      <div>
-        <h3>Code</h3>
-        <a href="https://codeforces.com">Codeforces</a><br>
-        <a href="https://stackoverflow.com">StackOverflow</a>
-      </div>
-      <div>
-        <h3>Research</h3>
-        <a href="https://arxiv.org">arXiv</a><br>
-        <a href="https://scholar.google.com">Scholar</a>
-      </div>
-    </div>
-  </div>
+    </section>
+  </main>
+
   <script>
-    function tick(){ document.getElementById('clock').textContent =
-      new Date().toLocaleString(); } tick(); setInterval(tick, 1000);
+    function tick() {
+      const el = document.getElementById("clock");
+      const now = new Date();
+      el.textContent = now.toLocaleString(undefined, {
+        year: "numeric", month: "long", day: "numeric",
+        hour: "2-digit", minute: "2-digit", second: "2-digit"
+      });
+    }
+    tick(); setInterval(tick, 1000);
   </script>
 </body>
 </html>

@@ -92,7 +92,6 @@
   xdg.configFile."hypr".source = ./dotfiles/hypr;
   xdg.configFile."kitty".source = ./dotfiles/kitty;
   xdg.configFile."waybar".source = ./dotfiles/waybar;
-  xdg.configFile."rofi".source = ./dotfiles/rofi;
 
   # Ranger (solo archivos sueltos)
   xdg.configFile."ranger/commands.py".source = ./dotfiles/ranger/commands.py;
