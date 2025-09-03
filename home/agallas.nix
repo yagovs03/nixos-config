@@ -21,6 +21,7 @@
     eza
 
     # File manager
+    xfce.thunar
     ranger            # file manager
     ueberzugpp        # image previews for ranger
     poppler           # PDF preview for ranger
@@ -63,6 +64,12 @@
         # pero NO pone tu startpage (quedará en blanco).
         "browser.newtabpage.activity-stream.enabled" = false;
       };
+      # Opcional: estilo mínimo para UI vía userChrome
+      userChrome = ''
+        /* Oculta borde superior y redondea pestañas un poco */
+        #TabsToolbar { border: none !important; }
+        .tab-background { border-radius: 8px !important; }
+      '';
     };
   }; # <-- cerramos programs.firefox
 
