@@ -9,37 +9,27 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager, neovim-flake, nur, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, neovim-flake, nur, ... }:
   let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
-    pkgs = import nixpkgs { inherit system; overlays = [ nur.overlay ]; };
   in {
-    # NixOS system (host) named "nixos"
     nixosConfigurations.nixos = lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs; };
       modules = [
         ./hosts/nixos/configuration.nix
 
-        # Integrate Home Manager into the OS rebuild
         home-manager.nixosModules.home-manager
         {
+          nixpkgs.overlays = [ nur.overlay ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-	  home-manager.backupFileExtension = "backup";
+          home-manager.backupFileExtension = "backup";
+
           home-manager.users.agallas = import ./home/agallas.nix;
-          # (opcional pero recomendable) también fija el overlay a nivel del sistema
-          nixpkgs.overlays = [ nur.overlay ];
         }
       ];
     };
-
-    # (Optional) pure Home Manager target if you ever want HM-only switches
-    homeConfigurations."agallas@nixos" =
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { inherit system; };
-        modules = [ ./home/agallas.nix ];
-      };
   };
 }
+

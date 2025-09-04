@@ -50,44 +50,24 @@
   ];
 
 
-  # Startpage (carpeta con index.html, style.css, etc.)
+  # Copia la startpage a ~/.startpage
   home.file.".startpage".source = ./dotfiles/startpage;
 
-  programs.firefox = {
-    enable = true;
-    profiles.default = {
-      isDefault = true;
+programs.firefox = {
+  enable = true;
 
+  # usa el perfil real que ves en ~/.mozilla/firefox
+  profiles."3z7tqry0.default" = {
+    isDefault = true;
 
-      # Extensiones declarativas desde NUR (ya disponible en pkgs)
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        custom-new-tab-page
-        ublock-origin
-      ];
-
-      settings = {
-        # Startpage local
-        "browser.startup.homepage" =
-          "file://${config.home.homeDirectory}/.startpage/index.html";
-        "browser.startup.page" = 1;
-
-        # Tema oscuro:
-        "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
-        "layout.css.prefers-color-scheme.content-override" = 2;          # contenido en oscuro
-        "devtools.theme" = "dark";
-
-        # (opcional) desactivar la new tab por defecto
-        "browser.newtabpage.activity-stream.enabled" = false;
-      };
-
-        # Opcional: estilo mínimo para UI vía userChrome
-        userChrome = ''
-          /* Oculta borde superior y redondea pestañas un poco */
-          #TabsToolbar { border: none !important; }
-          .tab-background { border-radius: 8px !important; }
-        '';
+    settings = {
+      "browser.startup.homepage" =
+        "file://${config.home.homeDirectory}/.startpage/index.html";
+      "browser.startup.page" = 1;
+      "browser.newtabpage.activity-stream.enabled" = false;
     };
-  }; # <-- cerramos programs.firefox
+  };
+};
 
   # Shell & prompt
   programs.zsh.enable = true;
