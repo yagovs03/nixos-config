@@ -13,8 +13,9 @@
 
     git
     neovim
-    wordgrinder
     google-chrome
+
+    obsidian
     
     # Command‑line utilities
     ripgrep

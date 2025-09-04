@@ -44,6 +44,9 @@
 
     # Provide the Bibata cursor theme system‑wide (affects the login screen).
     bibata-cursors
+
+    #Provide tree visualization of files
+    tree
   ];
 
   #Fonts
