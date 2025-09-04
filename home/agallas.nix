@@ -1,11 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   programs.home-manager.enable = true;
 
   home.username = "agallas";
   home.homeDirectory = "/home/agallas";
-
 
   # User packages (installed for your user only)
 
