@@ -42,6 +42,8 @@
 
     wget              # command‑line download tool
 
+    flameshot         #screenshots
+
     # Hyprland environment extras
     waybar            # bar for Hyprland
     hyprpaper         # wallpaper daemon
