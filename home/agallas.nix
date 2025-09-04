@@ -42,15 +42,14 @@
 
     wget              # command‑line download tool
 
-    flameshot         #screenshots
 
     # Hyprland environment extras
     waybar            # bar for Hyprland
     hyprpaper         # wallpaper daemon
     #wlogout           # logout menu for wayland
     hyprlock
+    hyprshot
   ];
-
 
   # Copia la startpage a ~/.startpage
   home.file.".startpage".source = ./dotfiles/startpage;
