@@ -3,27 +3,25 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
-  # Enable flakes support in your system
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  imports = [ ./hardware-configuration.nix ];
 
 
-  # Enable graphical session (Wayland + Hyprland)
-  services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = false; #or gdm/ly if you prefer
-  services.xserver.desktopManager.plasma5.enable = false; #disable desktops
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+  };
+
+  nix.gc = { automatic = true; dates = "weekly"; options = "--delete-older-than 14d"; };
+  boot.tmp.cleanOnBoot = true;
+
+  # Wayland + Hyprland (No X server)
 
   services.greetd.enable = true;
-
   services.greetd.settings = {
   default_session = {
     # For Hyprland; dbus-run-session helps apps needing a session bus
     command = "tuigreet --remember --time --cmd 'dbus-run-session Hyprland'";
-    user = "greeter";
+    user = "agallas";
     };
   };
 
@@ -32,21 +30,22 @@
     xwayland.enable = true;  #useful for legacy apps
   };
 
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
+  };
+
+  security.rtkit.enable = true;
+  hardware.graphics.enable = true;
+
   # Install system‑level packages
-  #
-  # Keep this list minimal – only include software that must be available
-  # system‑wide (e.g. for services run as root). User‑facing tools are
-  # installed via Home Manager in home/agallas.nix.
   environment.systemPackages = with pkgs; [
     
-    # greetd runs as root and launches the greeter binary
-    greetd.tuigreet
+    greetd.tuigreet # greetd runs as root and launches the greeter binary
+    bibata-cursors # Provide the Bibata cursor theme system‑wide (affects the login screen).
+    tree #Provide tree visualization of files
 
-    # Provide the Bibata cursor theme system‑wide (affects the login screen).
-    bibata-cursors
-
-    #Provide tree visualization of files
-    tree
   ];
 
   #Fonts
@@ -64,11 +63,7 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
+  
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -83,8 +78,11 @@
   };
   
   hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
   
-  services.blueman.enable = true; #bluetooth manager
+  # Power / firmware
+  services.tlp.enable = true;
+  services.fwupd.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Madrid";
@@ -112,44 +110,23 @@
 
   # Configure console keymap
   console.keyMap = "es";
+  
+  programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.agallas = {
     isNormalUser = true;
     description = "agallas";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.05";
 
 }

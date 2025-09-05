@@ -5,11 +5,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    neovim-flake.url = "github:jordanisaacs/neovim-flake";
+
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager, neovim-flake, nur, ... }:
+  outputs = { self, nixpkgs, home-manager, nur, ... }:
   let
     system = "x86_64-linux";
     lib = nixpkgs.lib;

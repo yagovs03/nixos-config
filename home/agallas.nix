@@ -35,13 +35,11 @@
 
     unzip
     kitty             # terminal emulator
-    rofi              # application launcher
+    rofi-wayland      # application launcher
     neofetch          # system information CLI
-
     vscode            # graphical text editor
 
     wget              # command‑line download tool
-
 
     # Hyprland environment extras
     waybar            # bar for Hyprland
@@ -54,26 +52,19 @@
   # Copia la startpage a ~/.startpage
   home.file.".startpage".source = ./dotfiles/startpage;
 
-programs.firefox = {
-  enable = true;
+  programs.firefox = {
+    enable = true;
+    profiles."3z7tqry0.default" = {
+      isDefault = true;
 
-  # usa el perfil real que ves en ~/.mozilla/firefox
-  profiles."3z7tqry0.default" = {
-    isDefault = true;
-
-    settings = {
-      "browser.startup.homepage" =
-        "file://${config.home.homeDirectory}/.startpage/index.html";
-      "browser.startup.page" = 1;
-      "browser.newtabpage.activity-stream.enabled" = false;
+      settings = {
+        "browser.startup.homepage" =
+          "file://${config.home.homeDirectory}/.startpage/index.html";
+        "browser.startup.page" = 1;
+        "browser.newtabpage.activity-stream.enabled" = false;
+      };
     };
   };
-};
-
-  # Shell & prompt
-  programs.zsh.enable = true;
-  programs.starship.enable = true;
-  programs.zsh.shellAliases = { gs = "git status"; v = "nvim"; };
 
   # Git
   programs.git = {
@@ -85,7 +76,11 @@ programs.firefox = {
 
   home.sessionVariables = { EDITOR = "nvim"; BROWSER = "firefox"; };
 
-  # Dotfiles
+  ############
+  # Dotfiles #
+  ############
+
+  #carpetas
   xdg.configFile."hypr".source = ./dotfiles/hypr;
   xdg.configFile."kitty".source = ./dotfiles/kitty;
   xdg.configFile."waybar".source = ./dotfiles/waybar;
@@ -96,6 +91,49 @@ programs.firefox = {
   xdg.configFile."ranger/commands_full.py".source = ./dotfiles/ranger/commands_full.py;
   xdg.configFile."ranger/rc.conf".source = ./dotfiles/ranger/rc.conf;
   xdg.configFile."ranger/rifle.conf".source = ./dotfiles/ranger/rifle.conf;
+
+
+  ##################
+  # Shell & prompt #
+  ##################
+
+  #Permite buscar rápidamente en listas
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  #Sustituto inteligente de cd
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  programs.bat.enable = true; #sustituto de cat con colores, numeración de líneas y resaltado de sintaxis
+  programs.eza.enable = true; #sustituto de ls
+  programs.ripgrep.enable = true; #buscador ultrarápido de archivos (más que grep)
+
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    history = {
+      ignoreDups = true;
+      save = 50000;
+      share = true;
+    };
+
+    shellAliases = {
+      v = "nvim";
+      
+      ll = "eza -lah";
+      la = "eza -lha";       # incluye archivos ocultos
+      lt = "eza -T";         # vista en árbol
+      lg = "eza --git";       #info de Git
+
+      cat = "bat";   #mejor vista de archivos
+    };
+  };
+  programs.starship.enable = true;
+
 
   home.stateVersion = "25.05";
 }
