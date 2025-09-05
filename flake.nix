@@ -20,7 +20,7 @@
         ./hosts/nixos/configuration.nix
 
         home-manager.nixosModules.home-manager
-        {
+	{
           nixpkgs.overlays = [ nur.overlay ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;

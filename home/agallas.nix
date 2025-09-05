@@ -122,7 +122,6 @@
     };
 
     shellAliases = {
-      v = "nvim";
       
       ll = "eza -lah";
       la = "eza -lha";       # incluye archivos ocultos
@@ -130,6 +129,9 @@
       lg = "eza --git";       #info de Git
 
       cat = "bat";   #mejor vista de archivos
+
+      help = "bat Desktop/comandos_terminal.txt";
+      update = "sudo nixos-rebuild switch --flake ~/nix-config#nixos";
     };
   };
   programs.starship.enable = true;
