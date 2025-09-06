@@ -129,4 +129,38 @@
 
   system.stateVersion = "25.05";
 
+  ################
+  # Neovim (NVF) #
+  ################
+
+  programs.nvf = {
+    enable = true;
+    settings = {
+      vim = {
+        theme = {
+	  enable = true;
+          name = "tokyonight";
+          style = "night";
+          #name = "gruvbox";
+          #style = "dark";
+	};
+        
+        statusline.lualine.enable = true;
+        telescope.enable = true;
+        autocomplete.nvim-cmp.enable = true;
+
+	languages = {
+	  enableLSP = true;
+	  enableTreesitter = true;
+
+	  nix.enable = true;
+	  python.enable = true;
+	  html.enable = true;
+	  clang.enable = true;
+	};
+
+      };
+    };
+  };
+
 }

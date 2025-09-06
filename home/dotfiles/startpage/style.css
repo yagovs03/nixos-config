@@ -30,7 +30,7 @@ body{
 
 /* Tarjeta principal */
 .card{
-  max-width: 1000px;
+  max-width: min(90%, 1400px);
   margin: 0px;
   padding: 24px 28px;
   background: var(--card);       /* sólido, no transparente */
@@ -63,7 +63,7 @@ h1{
 .grid{
   display: grid;
   gap: 22px 36px;
-  grid-template-columns: repeat(5, minmax(0,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
 }
 h3{ margin: 0 0 8px; color: var(--muted); font-weight: 700; }
 a{
@@ -80,5 +80,4 @@ a:hover{ text-decoration: underline; }
   .wrap{ grid-template-columns: 1fr; }
   .panel{ height: 200px; }
   .card{ margin: 16px; }
-  .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 }

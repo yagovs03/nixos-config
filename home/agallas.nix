@@ -11,9 +11,7 @@
   home.packages = with pkgs; [
 
     git
-    neovim
     google-chrome
-
     obsidian
     
     # Command‑line utilities
@@ -130,12 +128,12 @@
 
       cat = "bat";   #mejor vista de archivos
 
-      help = "bat Desktop/comandos_terminal.txt";
+      help = "bat ~/Desktop/comandos_terminal.txt";
+      helpvim = "bat ~/Desktop/comandos_neovim.txt";
       update = "sudo nixos-rebuild switch --flake ~/nix-config#nixos";
     };
   };
   programs.starship.enable = true;
-
 
   home.stateVersion = "25.05";
 }
