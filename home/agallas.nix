@@ -13,6 +13,7 @@
     git
     google-chrome
     obsidian
+    anki-bin
     
     # Command‑line utilities
     ripgrep
