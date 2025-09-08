@@ -15,23 +15,39 @@
     system = "x86_64-linux";
     lib = nixpkgs.lib;
   in {
-    nixosConfigurations.nixos = lib.nixosSystem {
-      inherit system;
+    nixosConfigurations = {
+      nixos = lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./hosts/nixos/configuration.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            nixpkgs.overlays = [ nur.overlay ];
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.users.agallas = import ./home/agallas.nix;
+          }
+
+          nvf.nixosModules.default # adding nvf module
+        ];
+      };
+    };
+
+  homeConfigurations = {
+    agallas = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config = { allowUnfree = true; };  # <-- allow unfree for the standalone HM build
+      };
       modules = [
-
-        ./hosts/nixos/configuration.nix
-
-        home-manager.nixosModules.home-manager
-	{
-          nixpkgs.overlays = [ nur.overlay ];
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-          home-manager.users.agallas = import ./home/agallas.nix;
-        }
-
-	nvf.nixosModules.default #adding nvf module
+        { nixpkgs.config.allowUnfree = true; }  # <-- belt-and-suspenders inside HM
+        ./home/agallas.nix
       ];
     };
+  };
+
+
   };
 }
