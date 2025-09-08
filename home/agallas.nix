@@ -31,7 +31,7 @@
 
     brightnessctl     # brightness control utility
     pamixer           # audio volume control
-
+    mpv               #reproducing audio on anki cards
     unzip
     kitty             # terminal emulator
     rofi-wayland      # application launcher

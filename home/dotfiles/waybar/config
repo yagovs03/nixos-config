@@ -5,7 +5,7 @@
   "height": 25,
   "spacing": 4,
 
-  "modules-left": ["hyprland/workspaces", "cpu", "memory"],
+  "modules-left": ["hyprland/workspaces", "cpu", "memory", "custom/timer"],
   "modules-center": ["clock"],
   "modules-right": ["battery", "backlight", "pulseaudio", "network"],
 
@@ -34,6 +34,15 @@
   "memory": {
     "interval": 5,
     "format": "RAM: {used:0.1f}G/{total:0.1f}G ({percentage}%)"
+  },
+
+  "custom/timer": {
+    "exec": "~/.local/bin/waybar-timer.sh print",
+    "return-type": "plain",
+    "interval": 1,
+    "signal": 5,
+    "tooltip": false,
+    "format": "⏱  {}"
   },
 
   "network": {

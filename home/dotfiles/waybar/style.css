@@ -48,6 +48,7 @@
 #battery,
 #backlight,
 #pulseaudio,
+#custom-timer,
 #clock {
   padding: 0 8px;
   margin: 0 2px;
